@@ -20,3 +20,10 @@ resource "digitalocean_droplet" "unifi-controller" {
     ]
   }
 }
+
+resource "digitalocean_record" "unifi" {
+  domain = "jfis.co.uk"
+  type   = "A"
+  name   = "unifi"
+  value  = "${digitalocean_droplet.unifi-controller.ipv4_address}"
+}
